@@ -1,0 +1,39 @@
+.overlay {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 24px;
+  z-index: 1;
+}
+
+.link {
+  color: black;
+  text-decoration: underline;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.heading {
+  color: white;
+  font-size: 40px;
+  font-weight: 700;
+}
+
+.section {
+  margin-bottom: 48px;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+}
+
+.video {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  display: block;
+}

@@ -16,6 +16,6 @@
 
 .row {
   display: flex;
-  gap: 24px;
+  gap: 6px;
   overflow-x: auto;
 }

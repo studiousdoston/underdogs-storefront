@@ -12,7 +12,7 @@ type ProductCardProps = {
 };
 
 export function ProductCard({
-  imageUrl = "https://placehold.co/330x400",
+  imageUrl = "https://placehold.co/340x400",
   name = "Product Name",
   price = 0,
   rating = 5,
