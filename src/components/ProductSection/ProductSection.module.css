@@ -1,0 +1,21 @@
+.section {
+  margin-bottom: 48px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.arrows {
+  display: flex;
+  gap: 4px;
+}
+
+.row {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+}
