@@ -1,10 +1,11 @@
 import { Link } from "react-router-dom";
+
 import styles from "./BrandVideo.module.css";
-// import brandVideoSrc from "../../../../public/entrance.mp4";
+import "../../../css/globals.css";
 
 export function BrandVideo() {
   return (
-    <section className={styles.section}>
+    <section className={`fullBleed ${styles.section}`}>
       <video
         className={styles.video}
         src="/entrance.mp4"
