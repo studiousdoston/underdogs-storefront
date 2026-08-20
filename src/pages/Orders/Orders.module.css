@@ -1,0 +1,10 @@
+.content {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 32px 0;
+}
+
+.main {
+  flex: 1;
+}

@@ -1,0 +1,41 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 260px;
+  flex-shrink: 0;
+}
+
+.card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background-color: #f0f0f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+
+.card:first-child {
+  text-align: center;
+}
+
+.sectionLabel {
+  margin-bottom: 10px;
+  margin-top: 16px;
+}
+
+.sectionLabel:first-child {
+  margin-top: 0;
+}
+
+.input {
+  margin-bottom: 8px;
+}
