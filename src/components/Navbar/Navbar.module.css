@@ -1,11 +1,17 @@
 .header {
   width: 100%;
-  border-bottom: 1px solid #eee;
-  background-color: white;
+  height: 500px;
+  background-image: url("/wide-header.webp");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 50px;
 }
 
 .inner {
   max-width: 1600px;
+  width: 100%;
   margin: 0 auto;
   padding: 16px 48px;
   display: flex;
@@ -15,7 +21,10 @@
 
 .logo {
   text-decoration: none;
-  color: inherit;
+}
+
+.logoText {
+  color: white;
 }
 
 .nav {
@@ -26,13 +35,37 @@
 
 .link {
   text-decoration: none;
-  color: inherit;
-  font-size: 14px;
-  font-weight: 500;
+  color: #32383e;
+  font-size: 24px;
+  font-weight: 600;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background-color: orange;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.25s ease;
+}
+
+.link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
 .icons {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 32px;
+}
+
+.icon {
+  color: white;
 }

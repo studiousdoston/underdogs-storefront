@@ -1,0 +1,32 @@
+.footer {
+  width: 100%;
+  border-top: 1px solid #eee;
+  margin-top: 64px;
+  padding: 48px 0;
+}
+
+.inner {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 48px;
+  display: flex;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.heading {
+  margin-bottom: 4px;
+}
+
+.link {
+  font-size: 14px;
+  color: #555;
+  cursor: default;
+  text-decoration: none;
+}

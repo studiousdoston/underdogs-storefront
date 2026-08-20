@@ -1,7 +1,7 @@
+import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
 import { ProductCard } from "../../components/ProductCard";
 import { ProductSection } from "../../components/ProductSection";
-import { PromoImage } from "../../components/PromoImage";
 import { BrandVideo } from "./BrandVideo";
 // import styles from "./Home.module.css";
 
@@ -9,7 +9,6 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <PromoImage />
       <ProductSection title="Best Sellers">
         <ProductCard />
         <ProductCard />
@@ -31,7 +30,7 @@ export default function Home() {
         <ProductCard />
       </ProductSection>
 
-      <footer>FOOTER </footer>
+      <Footer />
     </>
   );
 }
