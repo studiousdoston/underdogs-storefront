@@ -11,25 +11,30 @@ import "./App.css";
 import Auth from "./pages/Auth";
 import { SearchModalProvider } from "./context/SearchModalContext";
 import { SearchModal } from "./components/Modals/SearchModal";
+import { CartModalProvider } from "./context/CartModalContext";
+import { CartDrawer } from "./components/Modals/CartDrawer";
 
 function App() {
   return (
     <AuthModalProvider>
       <SearchModalProvider>
-        <BrowserRouter>
-          <div className="layout">
-            <Routes>
-              <Route path="/auth" element={<Auth />} />
-              <Route path="/" element={<Home />} />
-              <Route path="/clothes" element={<Clothes />} />
-              <Route path="/accessories" element={<Accessories />} />
-              <Route path="/product/:id" element={<ProductDetail />} />
-              <Route path="/orders" element={<Orders />} />
-            </Routes>
-          </div>
-          <AuthModal />
-          <SearchModal />
-        </BrowserRouter>
+        <CartModalProvider>
+          <BrowserRouter>
+            <div className="layout">
+              <Routes>
+                <Route path="/auth" element={<Auth />} />
+                <Route path="/" element={<Home />} />
+                <Route path="/clothes" element={<Clothes />} />
+                <Route path="/accessories" element={<Accessories />} />
+                <Route path="/product/:id" element={<ProductDetail />} />
+                <Route path="/orders" element={<Orders />} />
+              </Routes>
+            </div>
+            <AuthModal />
+            <SearchModal />
+            <CartDrawer />
+          </BrowserRouter>
+        </CartModalProvider>
       </SearchModalProvider>
     </AuthModalProvider>
   );

@@ -6,10 +6,12 @@ import { useAuthModal } from "../../context/AuthModalContext";
 import { useSearchModal } from "../../context/SearchModalContext";
 
 import styles from "./StoreHeader.module.css";
+import { useCartModal } from "../../context/CartModalContext";
 
 export function StoreHeader() {
   const { open } = useAuthModal();
   const { openSearch } = useSearchModal();
+  const { openCart } = useCartModal();
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -33,7 +35,7 @@ export function StoreHeader() {
             <User size={20} />
           </IconButton>
           <IconButton variant="plain" size="sm">
-            <ShoppingCart size={20} />
+            <ShoppingCart size={20} onClick={openCart} />
           </IconButton>
         </div>
       </div>

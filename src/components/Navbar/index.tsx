@@ -6,10 +6,12 @@ import styles from "./Navbar.module.css";
 import { useAuthModal } from "../../context/AuthModalContext";
 import "../../css/globals.css";
 import { useSearchModal } from "../../context/SearchModalContext";
+import { useCartModal } from "../../context/CartModalContext";
 
 export function Navbar() {
   const { open } = useAuthModal();
   const { openSearch } = useSearchModal();
+  const { openCart } = useCartModal();
 
   return (
     <header className={`fullBleed ${styles.header}`}>
@@ -32,7 +34,7 @@ export function Navbar() {
               <Search size={24} onClick={openSearch} />
             </IconButton>
             <IconButton variant="plain" size="sm" className={styles.icon}>
-              <ShoppingCart size={24} />
+              <ShoppingCart size={24} onClick={openCart} />
             </IconButton>
             <IconButton
               variant="plain"
