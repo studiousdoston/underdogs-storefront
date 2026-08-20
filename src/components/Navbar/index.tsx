@@ -5,9 +5,12 @@ import IconButton from "@mui/joy/IconButton";
 import styles from "./Navbar.module.css";
 import { useAuthModal } from "../../context/AuthModalContext";
 import "../../css/globals.css";
+import { useSearchModal } from "../../context/SearchModalContext";
 
 export function Navbar() {
   const { open } = useAuthModal();
+  const { openSearch } = useSearchModal();
+
   return (
     <header className={`fullBleed ${styles.header}`}>
       {" "}
@@ -26,7 +29,7 @@ export function Navbar() {
 
           <div className={styles.icons}>
             <IconButton variant="plain" size="sm" className={styles.icon}>
-              <Search size={24} />
+              <Search size={24} onClick={openSearch} />
             </IconButton>
             <IconButton variant="plain" size="sm" className={styles.icon}>
               <ShoppingCart size={24} />

@@ -3,7 +3,7 @@ import Drawer from "@mui/joy/Drawer";
 import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
 import IconButton from "@mui/joy/IconButton";
-import { useAuthModal } from "../../context/AuthModalContext";
+import { useAuthModal } from "../../../context/AuthModalContext";
 import styles from "./AuthModal.module.css";
 import { useNavigate } from "react-router-dom";
 

@@ -1,0 +1,16 @@
+.panel {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 10px 48px;
+}
+
+.searchIcon {
+  color: #999;
+  flex-shrink: 0;
+}
+
+.input {
+  flex: 1;
+  font-size: 12px;
+}

@@ -1,13 +1,15 @@
 import { Link } from "react-router-dom";
-import { Search, Heart, User, ShoppingCart } from "lucide-react";
+import { Search, User, ShoppingCart } from "lucide-react";
 import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
-import Input from "@mui/joy/Input";
-import styles from "./StoreHeader.module.css";
 import { useAuthModal } from "../../context/AuthModalContext";
+import { useSearchModal } from "../../context/SearchModalContext";
+
+import styles from "./StoreHeader.module.css";
 
 export function StoreHeader() {
   const { open } = useAuthModal();
+  const { openSearch } = useSearchModal();
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -25,15 +27,8 @@ export function StoreHeader() {
         </Link>
 
         <div className={styles.right}>
-          <Input
-            placeholder="What are you looking for today?"
-            startDecorator={<Search size={12} />}
-            className={styles.search}
-            size="sm"
-          />
-          <IconButton variant="plain" size="sm">
-            <Heart size={20} />
-          </IconButton>
+          <Search size={20} onClick={openSearch} />
+
           <IconButton variant="plain" size="sm" onClick={open}>
             <User size={20} />
           </IconButton>
