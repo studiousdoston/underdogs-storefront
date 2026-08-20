@@ -7,16 +7,12 @@ const sortOptions = [
   "Newest",
   "Popular",
 ];
-const typeOptions = [
-  "Bags",
-  "Socks",
-  "Underwear",
-  "Bottles & Shakers",
-  "Shoes",
-  "Others",
-];
+type Props = {
+  typeOptions: string[];
+};
 
-export function FilterSidebar() {
+export function FilterSidebar(props: Props) {
+  const { typeOptions } = props;
   return (
     <aside className={styles.sidebar}>
       <Typography level="title-md" className={styles.heading}>

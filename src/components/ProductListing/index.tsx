@@ -4,12 +4,16 @@ import styles from "./ProductListing.module.css";
 
 type ProductListingProps = {
   count?: number;
+  typeOptions: string[];
 };
 
-export function ProductListing({ count = 8 }: ProductListingProps) {
+export function ProductListing({
+  count = 8,
+  typeOptions,
+}: ProductListingProps) {
   return (
     <div className={styles.listing}>
-      <FilterSidebar />
+      <FilterSidebar typeOptions={typeOptions} />
       <div className={styles.gridArea}>
         <ProductGrid count={count} />
         <div className={styles.pagination}>
