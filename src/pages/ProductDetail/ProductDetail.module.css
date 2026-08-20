@@ -1,0 +1,42 @@
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 200px;
+  padding: 32px 0;
+}
+
+.info {
+  max-width: 420px;
+}
+
+.titleLabel {
+  margin-bottom: 4px;
+}
+
+.titleText {
+  margin-top: 4px;
+  margin-bottom: 20px;
+}
+
+.descLabel {
+  margin-bottom: 20px;
+}
+
+.description {
+  color: #555;
+  margin-bottom: 20px;
+}
+.rating {
+  color: #f5a623;
+  margin-bottom: 20px;
+}
+
+.price {
+  margin-bottom: 8px;
+}
+
+.addToCart {
+  width: 100%;
+  margin-top: 8px;
+}

@@ -11,4 +11,13 @@ export const ClothType = {
   OTHERS: "OTHERS",
 } as const;
 
+export enum ClothSize {
+  ONE_SIZE = "ONE_SIZE",
+  S = "S",
+  M = "M",
+  L = "L",
+  XL = "XL",
+  XXL = "XXL",
+}
+
 export type ClothType = (typeof ClothType)[keyof typeof ClothType];

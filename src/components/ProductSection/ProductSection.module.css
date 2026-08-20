@@ -5,22 +5,22 @@
 .header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
   margin-bottom: 16px;
 }
 
 .arrows {
   display: flex;
   gap: 4px;
+  align-items: center;
 }
 
 .row {
   display: flex;
-  gap: 6px;
+  gap: 24px;
   overflow-x: auto;
 }
 
 .row > * {
-  width: 400px;
-  flex-shrink: 0;
+  flex: 0 0 calc((100% - 3 * 24px) / 4);
 }
