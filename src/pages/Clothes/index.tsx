@@ -1,3 +1,11 @@
+import { PageIntro } from "../../components/PageIntro";
+import { StoreHeader } from "../../components/StoreHeader";
+
 export default function Clothes() {
-  return <h1>Clothes</h1>;
+  return (
+    <>
+      <StoreHeader />
+      <PageIntro />
+    </>
+  );
 }

@@ -1,0 +1,24 @@
+/* PageIntro.module.css */
+.intro {
+  margin-bottom: 50px;
+}
+
+.title {
+  margin-bottom: 34px;
+}
+
+.description {
+  max-width: 600px;
+  color: #555;
+  margin-bottom: 34px;
+  line-height: 1.6;
+}
+
+.image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-top: 34px;
+  display: block;
+}

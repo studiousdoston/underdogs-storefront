@@ -1,0 +1,35 @@
+.listing {
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  padding-top: 32px;
+  border-top: 1px solid #eee;
+}
+
+.gridArea {
+  flex: 1;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+.pageArrow {
+  cursor: default;
+  font-size: 20px;
+}
+
+.pageNumber {
+  cursor: default;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.pageDots {
+  color: #999;
+  font-size: 30px;
+}

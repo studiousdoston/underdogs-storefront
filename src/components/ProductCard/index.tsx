@@ -20,7 +20,7 @@ export function ProductCard({
 }: ProductCardProps) {
   return (
     <Card variant="plain" className={styles.card}>
-      <AspectRatio ratio="4/5">
+      <AspectRatio ratio="3/4">
         <img src={imageUrl} alt={name} />
       </AspectRatio>
 

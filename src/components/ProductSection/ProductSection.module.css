@@ -19,3 +19,8 @@
   gap: 6px;
   overflow-x: auto;
 }
+
+.row > * {
+  width: 400px;
+  flex-shrink: 0;
+}
