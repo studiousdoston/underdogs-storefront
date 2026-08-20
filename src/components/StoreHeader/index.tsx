@@ -4,8 +4,10 @@ import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
 import Input from "@mui/joy/Input";
 import styles from "./StoreHeader.module.css";
+import { useAuthModal } from "../../context/AuthModalContext";
 
 export function StoreHeader() {
+  const { open } = useAuthModal();
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -32,7 +34,7 @@ export function StoreHeader() {
           <IconButton variant="plain" size="sm">
             <Heart size={20} />
           </IconButton>
-          <IconButton variant="plain" size="sm">
+          <IconButton variant="plain" size="sm" onClick={open}>
             <User size={20} />
           </IconButton>
           <IconButton variant="plain" size="sm">

@@ -1,0 +1,54 @@
+.dialog {
+  padding: 32px;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid black;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+}
+
+.closeButton {
+  margin-top: 2px;
+}
+
+.title {
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 24px;
+}
+
+.buttonGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.signUp,
+.login {
+  width: 100%;
+}
+
+.login span {
+  color: #666;
+  margin-right: 8px;
+}
+
+.terms {
+  color: #999;
+  text-align: center;
+}

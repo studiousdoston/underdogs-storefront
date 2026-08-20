@@ -3,9 +3,11 @@ import { Search, ShoppingCart, User } from "lucide-react";
 import Typography from "@mui/joy/Typography";
 import IconButton from "@mui/joy/IconButton";
 import styles from "./Navbar.module.css";
+import { useAuthModal } from "../../context/AuthModalContext";
 import "../../css/globals.css";
 
 export function Navbar() {
+  const { open } = useAuthModal();
   return (
     <header className={`fullBleed ${styles.header}`}>
       {" "}
@@ -23,13 +25,18 @@ export function Navbar() {
           </Link>
 
           <div className={styles.icons}>
-            <IconButton variant="plain" size="sm"  className={styles.icon}>
+            <IconButton variant="plain" size="sm" className={styles.icon}>
               <Search size={24} />
             </IconButton>
             <IconButton variant="plain" size="sm" className={styles.icon}>
               <ShoppingCart size={24} />
             </IconButton>
-            <IconButton variant="plain" size="sm" className={styles.icon}>
+            <IconButton
+              variant="plain"
+              size="sm"
+              className={styles.icon}
+              onClick={open}
+            >
               <User size={24} />
             </IconButton>
           </div>
