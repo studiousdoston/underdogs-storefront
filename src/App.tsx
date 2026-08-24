@@ -13,8 +13,17 @@ import { SearchModalProvider } from "./context/SearchModalContext";
 import { SearchModal } from "./components/Modals/SearchModal";
 import { CartModalProvider } from "./context/CartModalContext";
 import { CartDrawer } from "./components/Modals/CartDrawer";
+import { useAppDispatch } from "./hooks";
+import { useEffect } from "react";
+import { fetchMe } from "./features/auth/memberSlice";
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(fetchMe());
+  }, [dispatch]);
+  
   return (
     <AuthModalProvider>
       <SearchModalProvider>

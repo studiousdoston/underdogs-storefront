@@ -6,29 +6,43 @@ import IconButton from "@mui/joy/IconButton";
 import { useAuthModal } from "../../../context/AuthModalContext";
 import styles from "./AuthModal.module.css";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "@/hooks";
+import { logout } from "@/features/auth/memberSlice";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "@/lib/sweetAlert";
 
 export function AuthModal() {
   const { isOpen, close } = useAuthModal();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.member.user);
 
-  function goToAuth() {
+  function goToAuth(mode: "login" | "signup") {
     close();
-    navigate("/auth");
+    navigate("/auth", { state: { mode } });
   }
+
+  const handleLogout = async () => {
+    try {
+      await dispatch(logout()).unwrap();
+      sweetTopSmallSuccessAlert("Logged out");
+      close();
+    } catch (err) {
+      await sweetErrorHandling(err);
+    }
+  };
+
   return (
     <Drawer
       anchor="left"
       open={isOpen}
       onClose={close}
-      sx={{
-        "--Drawer-horizontalSize": "420px",
-      }}
+      sx={{ "--Drawer-horizontalSize": "420px" }}
       slotProps={{
         backdrop: {
-          sx: {
-            backdropFilter: "none",
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
-          },
+          sx: { backdropFilter: "none", backgroundColor: "rgba(0, 0, 0, 0.4)" },
         },
       }}
     >
@@ -42,31 +56,53 @@ export function AuthModal() {
           </IconButton>
         </div>
 
-        <Typography level="h4" className={styles.title}>
-          Sign in to your account
-        </Typography>
-        <Typography level="body-sm" className={styles.subtitle}>
-          Get access to your orders, rewards, and more
-        </Typography>
-
-        <div className={styles.buttonGroup}>
-          <Button
-            size="lg"
-            variant="solid"
-            className={styles.signUp}
-            onClick={goToAuth}
-          >
-            Sign Up
-          </Button>
-          <Button
-            size="lg"
-            variant="outlined"
-            className={styles.login}
-            onClick={goToAuth}
-          >
-            <span>Already have an account?</span> Log In
-          </Button>
-        </div>
+        {user ? (
+          <>
+            <Typography level="h4" className={styles.title}>
+              Hi, {user.memberNick}
+            </Typography>
+            <Typography level="body-sm" className={styles.subtitle}>
+              You're signed in to your account
+            </Typography>
+            <div className={styles.buttonGroup}>
+              <Button
+                size="lg"
+                variant="solid"
+                color="danger"
+                onClick={handleLogout}
+              >
+                Log Out
+              </Button>
+            </div>
+          </>
+        ) : (
+          <>
+            <Typography level="h4" className={styles.title}>
+              Sign in to your account
+            </Typography>
+            <Typography level="body-sm" className={styles.subtitle}>
+              Get access to your orders, rewards, and more
+            </Typography>
+            <div className={styles.buttonGroup}>
+              <Button
+                size="lg"
+                variant="solid"
+                className={styles.signUp}
+                onClick={() => goToAuth("signup")}
+              >
+                Sign Up
+              </Button>
+              <Button
+                size="lg"
+                variant="outlined"
+                className={styles.login}
+                onClick={() => goToAuth("login")}
+              >
+                <span>Already have an account?</span> Log In
+              </Button>
+            </div>
+          </>
+        )}
 
         <Typography level="body-xs" className={styles.terms}>
           By signing in, you agree to our privacy policy and terms of service
