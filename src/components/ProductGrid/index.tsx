@@ -4,7 +4,7 @@ import { ProductCard } from "../ProductCard";
 import { Typography } from "@mui/joy";
 
 import styles from "./ProductGrid.module.css";
-import { Loader } from "lucide-react";
+import { ProductCardSkeleton } from "../Loader";
 
 type ProductGridProps = {
   products: (Cloth | Accessory)[];
@@ -20,7 +20,7 @@ export function ProductGrid({ products, loading }: ProductGridProps) {
     return (
       <div className={styles.grid}>
         {Array.from({ length: 8 }).map((_, i) => (
-          <Loader key={i} />
+          <ProductCardSkeleton key={i} />
         ))}
       </div>
     );

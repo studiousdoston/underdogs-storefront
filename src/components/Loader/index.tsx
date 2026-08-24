@@ -1,7 +1,7 @@
 import { AspectRatio, Card, Skeleton } from "@mui/joy";
 import cardStyles from "./Loader.module.css";
 
-function ProductCardSkeleton() {
+export function ProductCardSkeleton() {
   return (
     <Card variant="plain" className={cardStyles.card}>
       <AspectRatio ratio="3/4">
