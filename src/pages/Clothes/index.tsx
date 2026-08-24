@@ -2,7 +2,7 @@ import { Footer } from "../../components/Footer";
 import { PageIntro } from "../../components/PageIntro";
 import { ProductListing } from "../../components/ProductListing";
 import { StoreHeader } from "../../components/StoreHeader";
-import { ClothType } from "../../lib/enums/clothes.enum";
+import { ClothCategory } from "../../lib/enums/clothes.enum";
 
 const intro = {
   title: "All Clothes",
@@ -10,9 +10,10 @@ const intro = {
   imageUrl: "/clothes.webp",
 };
 
-const clothTypeOptions = Object.values(ClothType).map(
-  (type) => type.charAt(0) + type.slice(1).toLowerCase(),
-);
+const clothTypeOptions = Object.values(ClothCategory).map((type) => {
+  const label = type.charAt(0) + type.slice(1).toLowerCase();
+  return { label, value: type };
+});
 
 export default function Clothes() {
   return (
@@ -23,7 +24,7 @@ export default function Clothes() {
         description={intro.description}
         imageUrl={intro.imageUrl}
       />
-      <ProductListing typeOptions={clothTypeOptions} />
+      <ProductListing typeOptions={clothTypeOptions} productType="cloth" />
       <Footer />
     </>
   );

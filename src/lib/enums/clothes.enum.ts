@@ -1,15 +1,15 @@
-export const ClothType = {
-  SHIRTS: "SHIRTS",
-  SLEEVES: "SLEEVES",
-  TANKS: "TANKS",
-  SHORTS: "SHORTS",
-  PANTS: "PANTS",
-  JOGGERS: "JOGGERS",
-  HOODIES: "HOODIES",
-  JACKETS: "JACKETS",
-  COMPRESSIONS: "COMPRESSIONS",
-  OTHERS: "OTHERS",
-} as const;
+// export const ClothType = {
+//   SHIRTS: "SHIRTS",
+//   SLEEVES: "SLEEVES",
+//   TANKS: "TANKS",
+//   SHORTS: "SHORTS",
+//   PANTS: "PANTS",
+//   JOGGERS: "JOGGERS",
+//   HOODIES: "HOODIES",
+//   JACKETS: "JACKETS",
+//   COMPRESSIONS: "COMPRESSIONS",
+//   OTHERS: "OTHERS",
+// } as const;
 
 export enum ClothSize {
   ONE_SIZE = "ONE_SIZE",
@@ -37,4 +37,4 @@ export interface ClothVariant {
   stock: number;
 }
 
-export type ClothType = (typeof ClothType)[keyof typeof ClothType];
+//export type ClothType = (typeof ClothType)[keyof typeof ClothType];

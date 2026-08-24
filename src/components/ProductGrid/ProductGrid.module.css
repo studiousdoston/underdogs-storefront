@@ -4,3 +4,11 @@
   grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
+.empty {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 300px;
+  color: #888;
+}

@@ -10,9 +10,11 @@ const intro = {
   imageUrl: `/accessory.webp`,
 };
 
-const accessoryTypeOptions = Object.values(AccessoryCategory).map(
-  (type) => type.charAt(0) + type.slice(1).toLowerCase(),
-);
+const accessoryTypeOptions = Object.values(AccessoryCategory).map((type) => {
+  const label = type.charAt(0) + type.slice(1).toLowerCase();
+
+  return { label, value: type };
+});
 
 export default function Accessories() {
   return (
@@ -23,7 +25,10 @@ export default function Accessories() {
         description={intro.description}
         imageUrl={intro.imageUrl}
       />
-      <ProductListing typeOptions={accessoryTypeOptions} />
+      <ProductListing
+        typeOptions={accessoryTypeOptions}
+        productType="accessory"
+      />
       <Footer />
     </>
   );

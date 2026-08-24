@@ -11,13 +11,12 @@ const sortOptions = [
 type SortValue = (typeof sortOptions)[number]["value"];
 
 type Props = {
-  typeOptions: string[];
+  typeOptions: { label: string; value: string }[];
   sort?: SortValue;
   category?: string;
   onSortChange?: (sort: SortValue) => void;
   onCategoryChange?: (category: string | undefined) => void;
 };
-
 export function FilterSidebar(props: Props) {
   const { typeOptions, sort, category, onSortChange, onCategoryChange } = props;
 
@@ -41,13 +40,15 @@ export function FilterSidebar(props: Props) {
       </Typography>
       {typeOptions.map((option) => (
         <span
-          key={option}
-          className={`${styles.option} ${category === option ? styles.active : ""}`}
+          key={option.value}
+          className={`${styles.option} ${category === option.value ? styles.active : ""}`}
           onClick={() =>
-            onCategoryChange?.(category === option ? undefined : option)
+            onCategoryChange?.(
+              category === option.value ? undefined : option.value,
+            )
           }
         >
-          {option}
+          {option.label}
         </span>
       ))}
     </aside>

@@ -27,3 +27,7 @@ export enum AccessorySize {
   VOL_1L = "1L",
   VOL_1_5L = "1.5L",
 }
+export enum AccessoryStatus {
+  ACTIVE = "ACTIVE",
+  DELETED = "DELETED",
+}
