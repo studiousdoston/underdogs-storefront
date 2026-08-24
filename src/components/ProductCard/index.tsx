@@ -3,7 +3,8 @@ import AspectRatio from "@mui/joy/AspectRatio";
 import Typography from "@mui/joy/Typography";
 import styles from "./ProductCard.module.css";
 
-type ProductCardProps = {
+export type Product = {
+  id: string | number;
   imageUrl?: string;
   name?: string;
   price?: number;
@@ -17,7 +18,7 @@ export function ProductCard({
   price = 0,
   rating = 5,
   soldCount = 0,
-}: ProductCardProps) {
+}: Omit<Product, "id">) {
   return (
     <Card variant="plain" className={styles.card}>
       <AspectRatio ratio="3/4">
@@ -28,7 +29,7 @@ export function ProductCard({
         {name}
       </Typography>
 
-      <Typography level="body-md" fontWeight="lg" className={styles.name}>
+      <Typography level="body-md" fontWeight="lg" className={styles.price}>
         ${price.toFixed(2)}
       </Typography>
 

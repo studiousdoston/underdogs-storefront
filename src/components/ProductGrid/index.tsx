@@ -1,14 +1,10 @@
-import Skeleton from "@mui/joy/Skeleton";
-import AspectRatio from "@mui/joy/AspectRatio";
-import Card from "@mui/joy/Card";
-
 import type { Cloth } from "@/lib/types/clothes";
 import type { Accessory } from "@/lib/types/accessories";
 import { ProductCard } from "../ProductCard";
 import { Typography } from "@mui/joy";
 
 import styles from "./ProductGrid.module.css";
-import cardStyles from "../ProductCard/ProductCard.module.css";
+import { Loader } from "lucide-react";
 
 type ProductGridProps = {
   products: (Cloth | Accessory)[];
@@ -24,7 +20,7 @@ export function ProductGrid({ products, loading }: ProductGridProps) {
     return (
       <div className={styles.grid}>
         {Array.from({ length: 8 }).map((_, i) => (
-          <ProductCardSkeleton key={i} />
+          <Loader key={i} />
         ))}
       </div>
     );
@@ -56,22 +52,5 @@ export function ProductGrid({ products, loading }: ProductGridProps) {
         );
       })}
     </div>
-  );
-}
-
-function ProductCardSkeleton() {
-  return (
-    <Card variant="plain" className={styles.card}>
-      <AspectRatio ratio="3/4">
-        <Skeleton variant="rectangular" />
-      </AspectRatio>
-      <Skeleton variant="text" level="body-sm" className={cardStyles.name} />
-      <Skeleton
-        variant="text"
-        level="body-md"
-        width="40%"
-        className={cardStyles.name}
-      />
-    </Card>
   );
 }
