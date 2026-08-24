@@ -1,4 +1,3 @@
-// src/services/MemberService.ts
 import axios from "axios";
 
 import type { LoginInput, Member, MemberInput } from "../lib/types/member";

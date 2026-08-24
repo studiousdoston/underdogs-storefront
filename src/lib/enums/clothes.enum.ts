@@ -20,4 +20,21 @@ export enum ClothSize {
   XXL = "XXL",
 }
 
+export enum ClothCategory {
+  SHIRTS = "SHIRTS",
+  SLEEVES = "SLEEVES",
+  TANKS = "TANKS",
+  SHORTS = "SHORTS",
+  PANTS = "PANTS",
+  JOGGERS = "JOGGERS",
+  HOODIES = "HOODIES",
+  JACKETS = "JACKETS",
+  COMPRESSIONS = "COMPRESSIONS",
+  OTHERS = "OTHERS",
+}
+export interface ClothVariant {
+  size: ClothSize;
+  stock: number;
+}
+
 export type ClothType = (typeof ClothType)[keyof typeof ClothType];
