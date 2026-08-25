@@ -1,14 +1,43 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
 import { StoreHeader } from "../../components/StoreHeader";
 import { ProductGallery } from "../../components/ProductGallery";
 import { SizeSelector } from "../../components/SizeSelector";
 import { ProductSection } from "../../components/ProductSection";
-import { ProductCard } from "../../components/ProductCard";
+import { ProductCard, type Product } from "../../components/ProductCard";
+import { normalizeProduct } from "@/lib/utils/normalizeProducts";
 import styles from "./ProductDetail.module.css";
 import { Footer } from "../../components/Footer";
 
+const API_URL = "http://localhost:3030/product";
+
 export default function ProductDetail() {
+  const { id } = useParams();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    async function fetchProduct() {
+      if (!id) return;
+      setLoading(true);
+      try {
+        const res = await fetch(`${API_URL}/${id}`);
+        const json = await res.json();
+        // backend returns the product item under data or directly; handle both
+        const raw = json.data ?? json;
+        setProduct(normalizeProduct(raw));
+      } catch (err) {
+        console.error("Failed to fetch product detail:", err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchProduct();
+  }, [id]);
+
   return (
     <>
       <StoreHeader />
@@ -22,7 +51,7 @@ export default function ProductDetail() {
               Title:
             </Typography>
             <Typography level="body-sm" className={styles.titleText}>
-              This is the product title,
+              {loading ? "Loading..." : product?.name ?? "Product not found"}
             </Typography>
           </span>
           <span>
@@ -30,19 +59,17 @@ export default function ProductDetail() {
               Description:
             </Typography>
             <Typography level="body-sm" className={styles.description}>
-              Minimalist clip bag for essentials on the go. Ripstop fabric with
-              a 1500mm waterproof rating shields contents from rain and moisture
-              when clipped externally. Zip main compartment with small nylon
-              puller provides secure, quick access. Gunmetal D-ring spring clip
-              attaches to any bag, belt loop, or kit. Finished with a woven
-              "Wings | ASRV" snap patch and 1" red webbing loop.
+              {/* If the backend provides a description field, it could be shown here. */}
+              {loading
+                ? ""
+                : "This product page displays the selected product. Detailed description is not provided by the mock API."}
             </Typography>
           </span>
           <Typography level="body-sm" className={styles.rating}>
             ★★★★★ (48)
           </Typography>
           <Typography level="title-lg" className={styles.price}>
-            $0.00
+            {loading ? "$0.00" : `$${(product?.price ?? 0).toFixed(2)}`}
           </Typography>
 
           <SizeSelector />
