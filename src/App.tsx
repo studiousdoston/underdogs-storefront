@@ -41,7 +41,7 @@ function App() {
             </div>
             <AuthModal />
             <SearchModal />
-            <CartDrawer />
+            <CartDrawer />    
           </BrowserRouter>
         </CartModalProvider>
       </SearchModalProvider>

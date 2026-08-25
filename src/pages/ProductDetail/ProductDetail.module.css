@@ -40,3 +40,7 @@
   width: 100%;
   margin-top: 8px;
 }
+.relatedLink {
+  text-decoration: none;
+  color: inherit;
+}

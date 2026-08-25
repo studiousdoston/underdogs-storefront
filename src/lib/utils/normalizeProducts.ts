@@ -1,7 +1,6 @@
 import type { Product } from "@/components/ProductCard/index";
 
-const BACKEND_URL = "http://localhost:3030";
-
+const BACKEND_URL = import.meta.env.VITE_SERVER_API as string;
 export function normalizeProduct(rawItem: any): Product {
   const isCloth = "clothName" in rawItem;
 

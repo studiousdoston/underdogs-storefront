@@ -21,9 +21,40 @@
   border-radius: 6px;
   font-size: 14px;
   cursor: pointer;
-  transition: border-color 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .size:hover {
   border-color: #000;
+}
+
+.sizeActive {
+  border-color: #000;
+  background-color: #000;
+  color: #fff;
+}
+
+.sizeActive:hover {
+  border-color: #000;
+}
+
+.sizeDisabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: #bbb;
+  border-color: #eee;
+  position: relative;
+}
+
+.sizeDisabled::after {
+  content: "";
+  position: absolute;
+  left: 4px;
+  right: 4px;
+  top: 50%;
+  border-top: 1px solid #bbb;
+  transform: rotate(-12deg);
 }

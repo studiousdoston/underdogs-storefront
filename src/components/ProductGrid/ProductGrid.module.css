@@ -11,4 +11,7 @@
   align-items: center;
   min-height: 300px;
   color: #888;
+}.productLink {
+  text-decoration: none;
+  color: inherit;
 }

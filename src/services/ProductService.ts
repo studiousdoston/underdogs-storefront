@@ -7,6 +7,7 @@ import type {
   GetAccessoriesParams,
   GetAccessoriesResponse,
 } from "@/lib/types/accessories";
+import type { Product } from "@/lib/types/product";
 
 const serverApi = import.meta.env.VITE_SERVER_API as string;
 
@@ -41,6 +42,33 @@ class ProductService {
       return result.data;
     } catch (err) {
       console.log("ERROR, getAccessories:", err);
+      throw err;
+    }
+  }
+
+  //! ------- getProductById -------
+  public async getProductById(id: string): Promise<Product> {
+    try {
+      const url = `${this.path}/product/${id}`;
+      const result = await axios.get(url, { withCredentials: true });
+      return result.data.data;
+    } catch (err) {
+      console.log("ERROR, getProductById:", err);
+      throw err;
+    }
+  }
+
+  //! ------- getRelatedProducts -------
+  public async getRelatedProducts(id: string, limit = 4): Promise<Product[]> {
+    try {
+      const url = `${this.path}/product/${id}/related`;
+      const result = await axios.get(url, {
+        params: { limit },
+        withCredentials: true,
+      });
+      return result.data.data;
+    } catch (err) {
+      console.log("ERROR, getRelatedProducts:", err);
       throw err;
     }
   }

@@ -1,5 +1,11 @@
-import type { Cloth } from "@/lib/types/clothes";
-import type { Accessory } from "@/lib/types/accessories";
+import { Link } from "react-router-dom";
+import type { Product } from "@/lib/types/product";
+import {
+  getProductName,
+  getProductPrice,
+  getProductImages,
+  getProductSoldNum,
+} from "@/lib/types/product";
 import { ProductCard } from "../ProductCard";
 import { Typography } from "@mui/joy";
 
@@ -7,13 +13,9 @@ import styles from "./ProductGrid.module.css";
 import { ProductCardSkeleton } from "../Loader";
 
 type ProductGridProps = {
-  products: (Cloth | Accessory)[];
+  products: Product[];
   loading?: boolean;
 };
-
-function isCloth(item: Cloth | Accessory): item is Cloth {
-  return "clothName" in item;
-}
 
 export function ProductGrid({ products, loading }: ProductGridProps) {
   if (loading)
@@ -31,26 +33,23 @@ export function ProductGrid({ products, loading }: ProductGridProps) {
         <Typography level="body-lg">No products available.</Typography>
       </div>
     );
+
   return (
     <div className={styles.grid}>
-      {products.map((item) => {
-        const name = isCloth(item) ? item.clothName : item.accessoryName;
-        const price = isCloth(item) ? item.clothPrice : item.accessoryPrice;
-        const images = isCloth(item) ? item.clothImages : item.accessoryImages;
-        const soldNum = isCloth(item)
-          ? item.clothSoldNum
-          : item.accessorySoldNum;
-
-        return (
+      {products.map((item) => (
+        <Link
+          key={item._id}
+          to={`/product/${item._id}`}
+          className={styles.productLink}
+        >
           <ProductCard
-            key={item._id}
-            imageUrl={`${import.meta.env.VITE_SERVER_API}/${images[0]}`}
-            name={name}
-            price={price}
-            soldCount={soldNum ?? 0}
+            imageUrl={getProductImages(item)[0]}
+            name={getProductName(item)}
+            price={getProductPrice(item)}
+            soldCount={getProductSoldNum(item)}
           />
-        );
-      })}
+        </Link>
+      ))}
     </div>
   );
 }
