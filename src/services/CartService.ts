@@ -28,7 +28,7 @@ class CartService {
     }
   }
 
-  //! ------- cancelOrder (remove cart / whole cart line) -------
+  //! ------- cancelOrder -------
   public async cancelOrder(orderId: string): Promise<Order> {
     try {
       const url = `${this.path}/member/${orderId}/cancel`;
@@ -36,6 +36,17 @@ class CartService {
       return result.data.data;
     } catch (err) {
       console.log("ERROR, cancelOrder:", err);
+      throw err;
+    }
+  }
+
+  //! ------- deleteOrder -------
+  public async deleteOrder(orderId: string): Promise<void> {
+    try {
+      const url = `${this.path}/member/${orderId}`;
+      await axios.delete(url, { withCredentials: true });
+    } catch (err) {
+      console.log("ERROR, deleteOrder:", err);
       throw err;
     }
   }

@@ -59,3 +59,19 @@ export const sweetFailureProvider = (
     }
   });
 };
+
+export const sweetConfirmDialog = async (
+  title: string,
+  text: string,
+  confirmText: string = "Yes",
+): Promise<boolean> => {
+  const result = await Swal.fire({
+    icon: "warning",
+    title,
+    text,
+    showCancelButton: true,
+    confirmButtonText: confirmText,
+    cancelButtonText: "Keep it",
+  });
+  return result.isConfirmed;
+};

@@ -29,20 +29,20 @@ export function Footer() {
         </div>
 
         <div className={styles.column}>
-          <Typography level="title-sm" className={styles.heading}>
+          <Link to={"/auth"} className={styles.heading}>
             Explore our Stores
-          </Typography>
+          </Link>
           <span className={styles.link}>Store Locator</span>
           <span className={styles.link}>About Us</span>
         </div>
 
         <div className={styles.column}>
-          <Typography level="title-sm" className={styles.heading}>
+          <Link to={"/auth"} className={styles.heading}>
             Join Us
-          </Typography>
+          </Link>
           <span className={styles.link}>Newsletter</span>
           <span className={styles.link}>Careers</span>
-          <Link to={"/"} className={styles.link}>
+          <Link to={"/auth"} className={styles.link}>
             SIGN UP
           </Link>
         </div>
