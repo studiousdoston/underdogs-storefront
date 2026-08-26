@@ -21,19 +21,42 @@ import {
   getProductImages,
   getProductVariants,
   getProductSoldNum,
+  isCloth,
 } from "../../lib/types/product";
 
 import styles from "./ProductDetail.module.css";
+import { useCartModal } from "@/context/CartModalContext";
+import { ItemSize, ItemType } from "@/lib/enums/order.enum";
+import { addItem } from "@/features/cart/CartSlice";
 
 export default function ProductDetail() {
   const { id } = useParams<{ id: string }>();
-  const dispatch = useAppDispatch();
+
   const {
     current: product,
     related,
     status,
   } = useAppSelector((state) => state.product);
+  const dispatch = useAppDispatch();
 
+  const { openCart } = useCartModal();
+
+  function handleAddToCart() {
+    if (!selectedSize || !product) return;
+
+    dispatch(
+      addItem({
+        productId: product._id,
+        itemType: isCloth(product) ? ItemType.CLOTH : ItemType.ACCESSORY,
+        itemSize: selectedSize as ItemSize,
+        itemQuantity: 1,
+        itemName: getProductName(product),
+        itemPrice: getProductPrice(product),
+        imageUrl: getProductImages(product)[0],
+      }),
+    );
+    openCart();
+  }
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
 
   useEffect(() => {
@@ -106,15 +129,11 @@ export default function ProductDetail() {
             selected={selectedSize}
             onSelect={setSelectedSize}
           />
-
           <Button
             size="lg"
             className={styles.addToCart}
             disabled={!selectedSize}
-            onClick={() => {
-              // TODO: wire to cart slice once it exists
-              console.log("Add to cart:", product._id, selectedSize);
-            }}
+            onClick={handleAddToCart}
           >
             Add to Cart
           </Button>

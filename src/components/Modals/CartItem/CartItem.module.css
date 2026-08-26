@@ -28,3 +28,20 @@
   top: 16px;
   right: 0;
 }
+
+.qtyRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+}
+
+.qtyBtn {
+  min-width: 24px;
+  min-height: 24px;
+}
+
+.qty {
+  min-width: 16px;
+  text-align: center;
+}

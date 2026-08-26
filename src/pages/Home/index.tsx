@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Footer } from "../../components/Footer";
 import { Navbar } from "../../components/Navbar";
 import { ProductCard, type Product } from "../../components/ProductCard";
@@ -7,6 +8,7 @@ import { BrandVideo } from "./BrandVideo";
 import { normalizeProduct } from "@/lib/utils/normalizeProducts";
 import { ProductCardSkeleton } from "@/components/Loader";
 import { normalizeCollab } from "@/lib/utils/normalizwCollab";
+import styles from "./Home.module.css";
 
 const API_URL = "http://localhost:3030/product";
 
@@ -60,7 +62,13 @@ export default function Home() {
           ))
         ) : bestSellers.length > 0 ? (
           bestSellers.map((product) => (
-            <ProductCard key={`bestseller-${product.id}`} {...product} />
+            <Link
+              key={`bestseller-${product.id}`}
+              to={`/product/${product.id}`}
+              className={styles.productLink}
+            >
+              <ProductCard {...product} />
+            </Link>
           ))
         ) : (
           <p>No best sellers found.</p>
@@ -76,7 +84,13 @@ export default function Home() {
           ))
         ) : newDrops.length > 0 ? (
           newDrops.map((product) => (
-            <ProductCard key={`newdrop-${product.id}`} {...product} />
+            <Link
+              key={`newdrop-${product.id}`}
+              to={`/product/${product.id}`}
+              className={styles.productLink}
+            >
+              <ProductCard {...product} />
+            </Link>
           ))
         ) : (
           <p>No new drops found.</p>

@@ -3,20 +3,45 @@ import Drawer from "@mui/joy/Drawer";
 import Typography from "@mui/joy/Typography";
 import Button from "@mui/joy/Button";
 import IconButton from "@mui/joy/IconButton";
+import { useNavigate } from "react-router-dom";
 import { useCartModal } from "../../../context/CartModalContext";
+import { useAuthModal } from "../../../context/AuthModalContext";
 import { CartItem } from "../CartItem";
 import styles from "./CartDrawer.module.css";
-import { Link } from "react-router-dom";
-
-const sampleItems = [
-  { name: "Shoes", price: 129.99 },
-  { name: "Long Sleeve Shirt", price: 39.99 },
-];
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import {
+  increaseQuantity,
+  decreaseQuantity,
+  removeItem,
+  checkout,
+} from "@/features/cart/CartSlice";
 
 export function CartDrawer() {
   const { isOpenCart, closeCart } = useCartModal();
+  const { open: openAuthModal } = useAuthModal();
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { items, checkoutStatus } = useAppSelector((state) => state.cart);
+  const { user } = useAppSelector((state) => state.member);
 
-  const subtotal = sampleItems.reduce((sum, item) => sum + item.price, 0);
+  const subtotal = items.reduce(
+    (sum: number, i: { itemPrice: number; itemQuantity: number }) =>
+      sum + i.itemPrice * i.itemQuantity,
+    0,
+  );
+
+  async function handleCheckout() {
+    if (!user) {
+      closeCart();
+      openAuthModal();
+      return;
+    }
+    const result = await dispatch(checkout());
+    if (checkout.fulfilled.match(result)) {
+      closeCart();
+      navigate("/orders");
+    }
+  }
 
   return (
     <Drawer
@@ -26,10 +51,7 @@ export function CartDrawer() {
       sx={{ "--Drawer-horizontalSize": "420px" }}
       slotProps={{
         backdrop: {
-          sx: {
-            backdropFilter: "none",
-            backgroundColor: "rgba(0, 0, 0, 0.4)",
-          },
+          sx: { backdropFilter: "none", backgroundColor: "rgba(0, 0, 0, 0.4)" },
         },
       }}
     >
@@ -42,9 +64,45 @@ export function CartDrawer() {
         </div>
 
         <div className={styles.items}>
-          {sampleItems.map((item) => (
-            <CartItem key={item.name} name={item.name} price={item.price} />
-          ))}
+          {items.length === 0 ? (
+            <Typography level="body-sm" className={styles.empty}>
+              Your cart is empty.
+            </Typography>
+          ) : (
+            items.map((item) => (
+              <CartItem
+                key={`${item.productId}-${item.itemSize}`}
+                name={`${item.itemName} (${item.itemSize})`}
+                price={item.itemPrice}
+                quantity={item.itemQuantity}
+                imageUrl={item.imageUrl}
+                onIncrease={() =>
+                  dispatch(
+                    increaseQuantity({
+                      productId: item.productId,
+                      itemSize: item.itemSize,
+                    }),
+                  )
+                }
+                onDecrease={() =>
+                  dispatch(
+                    decreaseQuantity({
+                      productId: item.productId,
+                      itemSize: item.itemSize,
+                    }),
+                  )
+                }
+                onRemove={() =>
+                  dispatch(
+                    removeItem({
+                      productId: item.productId,
+                      itemSize: item.itemSize,
+                    }),
+                  )
+                }
+              />
+            ))
+          )}
         </div>
 
         <div className={styles.footer}>
@@ -52,11 +110,14 @@ export function CartDrawer() {
             <Typography level="title-md">Subtotal</Typography>
             <Typography level="title-md">${subtotal.toFixed(2)}</Typography>
           </div>
-          <Link to={"/orders"}>
-            <Button size="lg" className={styles.checkout} onClick={closeCart}>
-              Checkout
-            </Button>
-          </Link>
+          <Button
+            size="lg"
+            className={styles.checkout}
+            onClick={handleCheckout}
+            disabled={items.length === 0 || checkoutStatus === "loading"}
+          >
+            {checkoutStatus === "loading" ? "Placing order..." : "Checkout"}
+          </Button>
         </div>
       </div>
     </Drawer>
