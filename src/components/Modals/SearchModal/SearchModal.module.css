@@ -1,8 +1,13 @@
 .panel {
   display: flex;
+  flex-direction: column;
+  padding: 10px 48px 20px;
+}
+
+.searchRow {
+  display: flex;
   align-items: center;
   gap: 16px;
-  padding: 10px 48px;
 }
 
 .searchIcon {
@@ -13,4 +18,49 @@
 .input {
   flex: 1;
   font-size: 12px;
+}
+
+.results {
+  display: flex;
+  flex-direction: column;
+  margin-top: 12px;
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.status {
+  color: #999;
+  padding: 16px 0;
+}
+
+.resultItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.resultItem:last-child {
+  border-bottom: none;
+}
+
+.resultItem:hover {
+  background-color: #fafafa;
+}
+
+.resultImage {
+  width: 48px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.resultInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }

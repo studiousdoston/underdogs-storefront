@@ -35,15 +35,15 @@ export function StoreHeader() {
         </Link>
 
         <div className={styles.right}>
-          <Search size={20} onClick={openSearch} />
+          <Search size={22} onClick={openSearch} />
 
           <IconButton variant="plain" size="sm" onClick={open}>
-            <User size={20} />
+            <User size={22} />
           </IconButton>
 
           <Badge badgeContent={cartCount} size="sm" invisible={cartCount === 0}>
             <IconButton variant="plain" size="sm" onClick={openCart}>
-              <ShoppingCart size={20} />
+              <ShoppingCart size={22} />
             </IconButton>
           </Badge>
         </div>

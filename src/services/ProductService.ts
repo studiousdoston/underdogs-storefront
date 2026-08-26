@@ -45,6 +45,21 @@ class ProductService {
       throw err;
     }
   }
+  
+  //! ------- searchProducts -------
+  public async searchProducts(query: string, limit = 6): Promise<Product[]> {
+    try {
+      const url = `${this.path}/product/search`;
+      const result = await axios.get(url, {
+        params: { q: query, limit },
+        withCredentials: true,
+      });
+      return result.data.data;
+    } catch (err) {
+      console.log("ERROR, searchProducts:", err);
+      throw err;
+    }
+  }
 
   //! ------- getProductById -------
   public async getProductById(id: string): Promise<Product> {
